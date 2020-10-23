@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mathferr <mathferr@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/23 04:42:40 by mathferr          #+#    #+#             */
-/*   Updated: 2020/10/23 05:22:46 by mathferr         ###   ########.fr       */
+/*   Created: 2020/10/23 05:07:59 by mathferr          #+#    #+#             */
+/*   Updated: 2020/10/23 05:09:00 by mathferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# ifndef FT_PRINTF_H
-#define	FT_PRINTF_H
+#include "./includes/ft_printf.h"
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdarg.h>
-#include <unistd.h>
-#include <string.h>
+void	ft_putchar(const char c)
+{
+	write(1, &c, 1);
+}
 
-void	ft_print_percent(void);
-void	ft_putchar(const char c);
-void	ft_putstr(const char *s);
-int		ft_printf(const char *format, ...);
-void	ft_specifier_manager(char specifier);
-
-# endif
+void	ft_putstr(const char *s)
+{
+	while (*s)
+		write(1, s++, 1);
+}
