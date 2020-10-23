@@ -6,25 +6,21 @@
 /*   By: mathferr <mathferr@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/07 16:15:20 by mathferr          #+#    #+#             */
-/*   Updated: 2020/06/08 21:13:33 by mathferr         ###   ########.fr       */
+/*   Updated: 2020/10/23 04:56:08 by mathferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdarg.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include "./includes/ft_printf.h"
 
 static void ft_putchar(const char c)
 {
 	write(1, &c, 1);
 }
 
-static void ft_putstr(const char *str)
+static void ft_putstr(const char *s)
 {
-	while (*str)
-		write(1, str++, 1);
+	while (*s)
+		write(1, s++, 1);
 }
 
 int ft_printf(const char *format, ...)
@@ -34,7 +30,7 @@ int ft_printf(const char *format, ...)
 	va_start(ap, format);
 	//ft_putstr(format);
 	const char *s = format;
-	while (*s)
+	while (format)
 	{
 		ft_putstr(s);
 		s = va_arg(ap, const char *);
