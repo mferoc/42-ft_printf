@@ -6,7 +6,7 @@
 /*   By: mathferr <mathferr@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/07 16:15:20 by mathferr          #+#    #+#             */
-/*   Updated: 2020/10/24 19:09:10 by mathferr         ###   ########.fr       */
+/*   Updated: 2020/10/24 19:46:28 by mathferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,25 @@
 int	ft_printf(const char *format, ...)
 {
 	va_list ap;
+	unsigned int	printed_len;
 
 	if (!format)
 		return (-1);
 	va_start(ap, format);
+	printed_len = 0;
 	while (*format)
 	{
 		if (*format != '%')
-			ft_putchar(*format);
+			ft_putchar_print_counter(*format, &printed_len);
 		else if (*format == '%')
 		{
 			format++;
-			ft_specifier_manager(*format, ap);
+			ft_specifier_manager(*format, ap, &printed_len);
 		}
 		format++;
 	}
 	va_end(ap);
+	return (printed_len);
 }
 
 int	main(void) {
@@ -48,7 +51,7 @@ int	main(void) {
 	//printf("OI EU SOU O GOKU\nPrint p: p=\t%p\tp=\t%p\tnull=%p\n", &x, &y, NULL);
 	//printf("Print s: str=\t%s\tstr=\t%s\tnull=%s\n", "Groot", "I'M GROOT", NULL);
 	//ft_printf("Print s: str=\t%s\tstr=\t%s\tnull=%s\n", "Groot", "I'M GROOT", NULL);
-	int ret = printf(NULL);
+	int ret = printf("Print xX: x=\t%x\tX=\t%X\t0=\t%x\n", 666, 666, 0);
 	printf("ret = %d\n", ret);
 	return (0);
 }
