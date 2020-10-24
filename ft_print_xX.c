@@ -1,29 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_specifier_manager.c                             :+:      :+:    :+:   */
+/*   ft_print_xX.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mathferr <mathferr@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/23 05:00:40 by mathferr          #+#    #+#             */
-/*   Updated: 2020/10/24 18:14:01 by mathferr         ###   ########.fr       */
+/*   Created: 2020/10/24 18:11:47 by mathferr          #+#    #+#             */
+/*   Updated: 2020/10/24 18:18:05 by mathferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/ft_printf.h"
 
-void	ft_specifier_manager(char specifier, va_list ap) //recebendo ap para imprimir args
+void	ft_print_xX(char specifier, va_list ap)
 {
-	if (specifier == 'c')
-		ft_print_c(ap);
-	else if (specifier == 's')
-		ft_print_s(ap);
-	else if (specifier == 'd' || specifier == 'i')
-		ft_print_di(ap);
-	else if (specifier == 'u')
-		ft_print_u(ap);
-	else if (specifier == 'x' || specifier == 'X')
-		ft_print_xX(specifier, ap);
-	else if (specifier == '%')
-		ft_print_percent();
+	size_t	hex;
+
+	hex = va_arg(ap, size_t);
+	ft_putnbr_hex(specifier, hex);
 }
