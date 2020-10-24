@@ -1,29 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_specifier_manager.c                             :+:      :+:    :+:   */
+/*   ft_convert_numbers.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mathferr <mathferr@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/23 05:00:40 by mathferr          #+#    #+#             */
-/*   Updated: 2020/10/24 16:06:34 by mathferr         ###   ########.fr       */
+/*   Created: 2020/10/24 15:59:19 by mathferr          #+#    #+#             */
+/*   Updated: 2020/10/24 16:12:40 by mathferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/ft_printf.h"
 
-void	ft_specifier_manager(char specifier, va_list ap) //recebendo ap para imprimir args
+void	ft_putnbr(int n)
 {
-	if (specifier == 'c')
-		ft_print_c(ap);
-	else if (specifier == 's')
-		ft_print_s(ap);
-	else if (specifier == 'd' || specifier == 'i')
-		ft_print_di(ap);
-	else if (specifier == 'u')
-		ft_putchar('u'); //MODIFICAR
-	else if (specifier == 'x' || specifier == 'X')
-		ft_putchar('x'); //MODIFICAR
-	else if (specifier == '%')
-		ft_print_percent();
+	long int big_nb;
+
+	big_nb = n;
+	if (big_nb < 0)
+	{
+		ft_putchar(45);
+		big_nb = (big_nb * -1);
+	}
+	if (big_nb >= 10)
+	{
+		ft_putnbr(big_nb / 10);
+		ft_putchar((big_nb % 10) + '0');
+	}
+	else
+		ft_putchar(big_nb + '0');
 }
+
+//putnbr_u
+
+//putnbr_hex

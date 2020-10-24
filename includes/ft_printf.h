@@ -6,7 +6,7 @@
 /*   By: mathferr <mathferr@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 04:42:40 by mathferr          #+#    #+#             */
-/*   Updated: 2020/10/24 14:16:18 by mathferr         ###   ########.fr       */
+/*   Updated: 2020/10/24 16:03:42 by mathferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,16 @@
 #include <unistd.h>
 #include <string.h>
 
-void	ft_print_percent(void);
+/* DONE */
 void	ft_putchar(const char c);
 void	ft_putstr(const char *s);
 int		ft_printf(const char *format, ...);
 void	ft_specifier_manager(char specifier, va_list ap);
+/* VARIABLES */
+void	ft_print_percent(void);
 void	ft_print_c(va_list ap);
 void	ft_print_s(va_list ap);
+void	ft_print_di(va_list ap);
+void	ft_putnbr(int n);
 
 # endif
