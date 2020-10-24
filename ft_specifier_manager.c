@@ -6,7 +6,7 @@
 /*   By: mathferr <mathferr@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 05:00:40 by mathferr          #+#    #+#             */
-/*   Updated: 2020/10/24 18:14:01 by mathferr         ###   ########.fr       */
+/*   Updated: 2020/10/24 18:31:51 by mathferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	ft_specifier_manager(char specifier, va_list ap) //recebendo ap para imprim
 		ft_print_c(ap);
 	else if (specifier == 's')
 		ft_print_s(ap);
+	else if (specifier == 'p')
+		ft_print_p(ap);
 	else if (specifier == 'd' || specifier == 'i')
 		ft_print_di(ap);
 	else if (specifier == 'u')

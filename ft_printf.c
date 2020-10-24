@@ -6,7 +6,7 @@
 /*   By: mathferr <mathferr@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/07 16:15:20 by mathferr          #+#    #+#             */
-/*   Updated: 2020/10/24 18:19:44 by mathferr         ###   ########.fr       */
+/*   Updated: 2020/10/24 18:42:19 by mathferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,11 @@ int	main(void) {
 	//ft_printf("Print d and i: d=\t%d\ti=\t%i\n", -42, 777 - 666);
 	//ft_printf("Print u: u=\t%u\tinvalid u=\t%u\n", 42, -666);
 	//printf("OI EU SOU O GOKU\nPrint u: u=\t%u\tinvalid u=\t%u\n", 42, -666);
-	ft_printf("Print xX: x=\t%x\tX=\t%X\n", 666, 666);
-	printf("OI EU SOU O GOKU\nPrint xX: x=\t%x\tX=\t%X\n", 666, 666);
+	//ft_printf("Print xX: x=\t%x\tX=\t%X\t0=\t%x\n", 666, 666, 0);
+	//printf("OI EU SOU O GOKU\nPrint xX: x=\t%x\tX=\t%X\t0=\t%x\n", 666, 666, 0);
+	int x = 0;
+	int y = 0;
+	ft_printf("Print p: p=\t%p\tp=\t%p\tnull=%p\n", &x, &y, NULL);
+	printf("OI EU SOU O GOKU\nPrint p: p=\t%p\tp=\t%p\tnull=%p\n", &x, &y, NULL);
 	return (0);
 }
