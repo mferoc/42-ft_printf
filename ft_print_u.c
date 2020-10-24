@@ -1,29 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_specifier_manager.c                             :+:      :+:    :+:   */
+/*   ft_print_u.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mathferr <mathferr@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/23 05:00:40 by mathferr          #+#    #+#             */
-/*   Updated: 2020/10/24 16:22:01 by mathferr         ###   ########.fr       */
+/*   Created: 2020/10/24 16:18:07 by mathferr          #+#    #+#             */
+/*   Updated: 2020/10/24 16:19:34 by mathferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/ft_printf.h"
 
-void	ft_specifier_manager(char specifier, va_list ap) //recebendo ap para imprimir args
+void	ft_print_u(va_list ap)
 {
-	if (specifier == 'c')
-		ft_print_c(ap);
-	else if (specifier == 's')
-		ft_print_s(ap);
-	else if (specifier == 'd' || specifier == 'i')
-		ft_print_di(ap);
-	else if (specifier == 'u')
-		ft_print_u(ap);
-	else if (specifier == 'x' || specifier == 'X')
-		ft_putchar('x'); //MODIFICAR
-	else if (specifier == '%')
-		ft_print_percent();
+	unsigned int natural_num;
+
+	natural_num = va_arg(ap, unsigned int);
+	ft_putnbr_u(natural_num);
 }

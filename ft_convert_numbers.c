@@ -6,7 +6,7 @@
 /*   By: mathferr <mathferr@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/24 15:59:19 by mathferr          #+#    #+#             */
-/*   Updated: 2020/10/24 16:12:40 by mathferr         ###   ########.fr       */
+/*   Updated: 2020/10/24 16:17:26 by mathferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,15 @@ void	ft_putnbr(int n)
 		ft_putchar(big_nb + '0');
 }
 
-//putnbr_u
+void	ft_putnbr_u(unsigned int n)
+{
+	if (n >= 10)
+	{
+		ft_putnbr(n / 10);
+		ft_putchar((n % 10) + '0');
+	}
+	else
+		ft_putchar(n + '0');
+}
 
 //putnbr_hex
