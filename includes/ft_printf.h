@@ -6,7 +6,7 @@
 /*   By: mathferr <mathferr@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 04:42:40 by mathferr          #+#    #+#             */
-/*   Updated: 2020/10/23 05:22:46 by mathferr         ###   ########.fr       */
+/*   Updated: 2020/10/24 14:04:56 by mathferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	ft_print_percent(void);
 void	ft_putchar(const char c);
 void	ft_putstr(const char *s);
 int		ft_printf(const char *format, ...);
-void	ft_specifier_manager(char specifier);
+void	ft_specifier_manager(char specifier, va_list ap);
+void	ft_print_c(va_list ap);
 
 # endif
