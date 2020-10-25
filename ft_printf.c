@@ -6,34 +6,48 @@
 /*   By: mathferr <mathferr@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/07 16:15:20 by mathferr          #+#    #+#             */
-/*   Updated: 2020/10/24 19:46:28 by mathferr         ###   ########.fr       */
+/*   Updated: 2020/10/25 05:56:57 by mathferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/ft_printf.h"
 
+static void	start_print_manager(t_formatter *formatter)
+{
+	formatter->flag_minus = 0;
+	formatter->flag_zero = 0;
+	formatter->flag_star = 0;
+	formatter->flag_point = 0;
+	formatter->width = 0;
+	formatter->precision = 0;
+	formatter->printed_len = 0;
+	formatter->specifier = '\0';
+}
+
 int	ft_printf(const char *format, ...)
 {
-	va_list ap;
-	unsigned int	printed_len;
+	va_list		ap;
+	t_formatter	formatter;
 
 	if (!format)
 		return (-1);
 	va_start(ap, format);
-	printed_len = 0;
+	start_print_manager(&formatter);
 	while (*format)
 	{
 		if (*format != '%')
-			ft_putchar_print_counter(*format, &printed_len);
+			ft_putchar_print_counter(*format, &(formatter.printed_len));
 		else if (*format == '%')
 		{
+			formatter.specifier = '\0';
 			format++;
-			ft_specifier_manager(*format, ap, &printed_len);
+			formatter.specifier = *format;
+			ft_specifier_manager(ap, &formatter);
 		}
 		format++;
 	}
 	va_end(ap);
-	return (printed_len);
+	return (formatter.printed_len);
 }
 
 int	main(void) {
@@ -45,13 +59,16 @@ int	main(void) {
 	//printf("OI EU SOU O GOKU\nPrint u: u=\t%u\tinvalid u=\t%u\n", 42, -666);
 	//ft_printf("Print xX: x=\t%x\tX=\t%X\t0=\t%x\n", 666, 666, 0);
 	//printf("OI EU SOU O GOKU\nPrint xX: x=\t%x\tX=\t%X\t0=\t%x\n", 666, 666, 0);
-	//int x = 0;
-	//int y = 0;
+	int x = 0;
+	int y = 0;
 	//ft_printf("Print p: p=\t%p\tp=\t%p\tnull=%p\n", &x, &y, NULL);
 	//printf("OI EU SOU O GOKU\nPrint p: p=\t%p\tp=\t%p\tnull=%p\n", &x, &y, NULL);
 	//printf("Print s: str=\t%s\tstr=\t%s\tnull=%s\n", "Groot", "I'M GROOT", NULL);
 	//ft_printf("Print s: str=\t%s\tstr=\t%s\tnull=%s\n", "Groot", "I'M GROOT", NULL);
-	int ret = printf("Print xX: x=\t%x\tX=\t%X\t0=\t%x\n", 666, 666, 0);
+	int ret = ft_printf("Print p: p=\t%p\tp=\t%p\tnull=%p\n", &x, &y, NULL);
 	printf("ret = %d\n", ret);
+	printf("OI EU SOU O GOKU\n");
+	int ret_pf_real = printf("Print p: p=\t%p\tp=\t%p\tnull=%p\n", &x, &y, NULL);
+	printf("ret_pf_real = %d\n", ret_pf_real);
 	return (0);
 }

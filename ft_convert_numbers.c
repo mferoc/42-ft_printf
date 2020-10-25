@@ -6,7 +6,7 @@
 /*   By: mathferr <mathferr@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/24 15:59:19 by mathferr          #+#    #+#             */
-/*   Updated: 2020/10/24 19:35:15 by mathferr         ###   ########.fr       */
+/*   Updated: 2020/10/25 05:53:35 by mathferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,27 +56,10 @@ void	ft_putnbr_hex(char specifier, size_t hex, unsigned int *count)
 		c = mod + '0';
 	else
 	{
-		if (specifier == 'x')
+		if (specifier == 'x' || specifier == 'p')
 			c = 'a' + (mod - 10);
 		else if (specifier == 'X')
 			c = 'A' + (mod - 10);
 	}
-	ft_putchar_print_counter(c, count);
-}
-
-void	ft_putnbr_p(size_t hex, unsigned int *count)
-{
-	size_t	div;
-	int		mod;
-	char	c;
-
-	div = hex / 16;
-	mod = hex % 16;
-	if (div != 0)
-		ft_putnbr_p(div, count);
-	if (mod < 10)
-		c = mod + '0';
-	else
-		c = 'a' + (mod - 10);
 	ft_putchar_print_counter(c, count);
 }
