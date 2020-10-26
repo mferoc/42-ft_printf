@@ -6,25 +6,24 @@
 /*   By: mathferr <mathferr@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/07 16:15:20 by mathferr          #+#    #+#             */
-/*   Updated: 2020/10/25 05:56:57 by mathferr         ###   ########.fr       */
+/*   Updated: 2020/10/25 22:19:02 by mathferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/ft_printf.h"
 
-static void	start_print_manager(t_formatter *formatter)
+static void	zero_print_manager(t_formatter *formatter)
 {
 	formatter->flag_minus = 0;
 	formatter->flag_zero = 0;
-	formatter->flag_star = 0;
-	formatter->flag_point = 0;
+	formatter->star = 0;
+	formatter->point = 0;
 	formatter->width = 0;
 	formatter->precision = 0;
-	formatter->printed_len = 0;
 	formatter->specifier = '\0';
 }
 
-int	ft_printf(const char *format, ...)
+int			ft_printf(const char *format, ...)
 {
 	va_list		ap;
 	t_formatter	formatter;
@@ -32,14 +31,14 @@ int	ft_printf(const char *format, ...)
 	if (!format)
 		return (-1);
 	va_start(ap, format);
-	start_print_manager(&formatter);
+	formatter.printed_len = 0;
 	while (*format)
 	{
 		if (*format != '%')
 			ft_putchar_print_counter(*format, &(formatter.printed_len));
 		else if (*format == '%')
 		{
-			formatter.specifier = '\0';
+			zero_print_manager(&formatter);
 			format++;
 			formatter.specifier = *format;
 			ft_specifier_manager(ap, &formatter);
@@ -70,5 +69,8 @@ int	main(void) {
 	printf("OI EU SOU O GOKU\n");
 	int ret_pf_real = printf("Print p: p=\t%p\tp=\t%p\tnull=%p\n", &x, &y, NULL);
 	printf("ret_pf_real = %d\n", ret_pf_real);
+	//ft_printf("%7 % % %% %z %k\n");
+	//printf("OI EU SOU O GOKU\n%7 % % %% %Z %k\n");
+	ft_printf("GROT = %5 % % %k %6t6 %tz %%\n\n");
 	return (0);
 }

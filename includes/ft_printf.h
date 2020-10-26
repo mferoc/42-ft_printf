@@ -6,7 +6,7 @@
 /*   By: mathferr <mathferr@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 04:42:40 by mathferr          #+#    #+#             */
-/*   Updated: 2020/10/25 06:09:22 by mathferr         ###   ########.fr       */
+/*   Updated: 2020/10/25 22:19:16 by mathferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ typedef struct		s_formatter
 {
 	int				flag_minus;
 	int				flag_zero;
-	int				flag_star;
-	int				flag_point;
+	int				star;
+	int				point;
 	int				width;
 	int				precision;
 	unsigned int	printed_len;
