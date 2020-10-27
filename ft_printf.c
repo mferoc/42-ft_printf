@@ -6,14 +6,15 @@
 /*   By: mathferr <mathferr@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/07 16:15:20 by mathferr          #+#    #+#             */
-/*   Updated: 2020/10/25 22:19:02 by mathferr         ###   ########.fr       */
+/*   Updated: 2020/10/27 16:58:56 by mathferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/ft_printf.h"
 
-static void	zero_print_manager(t_formatter *formatter)
+static void	zero_print_manager(t_formatter *formatter) // REFACTOR FUNCTION NAME
 {
+	formatter->flags_length = 0;
 	formatter->flag_minus = 0;
 	formatter->flag_zero = 0;
 	formatter->star = 0;
@@ -22,6 +23,18 @@ static void	zero_print_manager(t_formatter *formatter)
 	formatter->precision = 0;
 	formatter->specifier = '\0';
 }
+
+/* static int	flag_discovery(const char *s, t_formatter *formatter)
+{
+	if (*s == '0' || *s == '-' || *s == '*' || *s == '.' || *s == isnumber(s) )
+
+	return;
+}
+
+static char	*build_flags(const char *s, t_formatter *formatter)
+{
+	return;
+} */
 
 int			ft_printf(const char *format, ...)
 {
@@ -72,5 +85,17 @@ int	main(void) {
 	//ft_printf("%7 % % %% %z %k\n");
 	//printf("OI EU SOU O GOKU\n%7 % % %% %Z %k\n");
 	ft_printf("GROT = %5 % % %k %6t6 %tz %%\n\n");
+	printf("0 = %d\n", ft_isnum('0'));
+	printf("1 = %d\n", ft_isnum('1'));
+	printf("2 = %d\n", ft_isnum('2'));
+	printf("3 = %d\n", ft_isnum('3'));
+	printf("4 = %d\n", ft_isnum('4'));
+	printf("5 = %d\n", ft_isnum('5'));
+	printf("6 = %d\n", ft_isnum('6'));
+	printf("7 = %d\n", ft_isnum('7'));
+	printf("8 = %d\n", ft_isnum('8'));
+	printf("9 = %d\n", ft_isnum('9'));
+	printf("OUTRO = %d\n", ft_isnum('Z'));
+	printf("%d\n", 42);
 	return (0);
 }

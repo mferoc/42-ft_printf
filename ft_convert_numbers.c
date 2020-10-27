@@ -6,7 +6,7 @@
 /*   By: mathferr <mathferr@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/24 15:59:19 by mathferr          #+#    #+#             */
-/*   Updated: 2020/10/25 05:53:35 by mathferr         ###   ########.fr       */
+/*   Updated: 2020/10/27 16:59:34 by mathferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,7 @@ void	ft_putnbr(int n, unsigned int *count)
 
 	big_nb = n;
 	if (big_nb < 0)
-	{
-		ft_putchar_print_counter(45, count);
 		big_nb = (big_nb * -1);
-	}
 	if (big_nb >= 10)
 	{
 		ft_putnbr(big_nb / 10, count);

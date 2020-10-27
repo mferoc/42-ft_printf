@@ -6,7 +6,7 @@
 /*   By: mathferr <mathferr@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 04:42:40 by mathferr          #+#    #+#             */
-/*   Updated: 2020/10/25 22:19:16 by mathferr         ###   ########.fr       */
+/*   Updated: 2020/10/26 10:43:58 by mathferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct		s_formatter
 {
 	int				flag_minus;
 	int				flag_zero;
+	int				flags_length;
 	int				star;
 	int				point;
 	int				width;
@@ -34,6 +35,7 @@ typedef struct		s_formatter
 
 int					ft_printf(const char *format, ...);
 /* UTILS */
+int					ft_isnum(char c);
 void				ft_putstr(const char *s, unsigned int *count);
 void				ft_putchar_print_counter(const char c, unsigned int *count);
 /* NUMBER CONVERSIONS */

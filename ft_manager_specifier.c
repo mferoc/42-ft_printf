@@ -6,7 +6,7 @@
 /*   By: mathferr <mathferr@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 05:00:40 by mathferr          #+#    #+#             */
-/*   Updated: 2020/10/25 21:48:17 by mathferr         ###   ########.fr       */
+/*   Updated: 2020/10/26 10:34:15 by mathferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,4 @@ void	ft_specifier_manager(va_list ap, t_formatter *formatter) //recebendo ap par
 		ft_print_percent(&(formatter->printed_len));
 	else
 		ft_putchar_print_counter(formatter->specifier, &(formatter->printed_len));
-
 }
