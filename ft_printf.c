@@ -6,60 +6,69 @@
 /*   By: mathferr <mathferr@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/07 16:15:20 by mathferr          #+#    #+#             */
-/*   Updated: 2020/10/27 16:58:56 by mathferr         ###   ########.fr       */
+/*   Updated: 2020/10/29 15:19:21 by mathferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/ft_printf.h"
 
-static void	zero_print_manager(t_formatter *formatter) // REFACTOR FUNCTION NAME
+static void	zero_print_manager(t_formatters *formatters) // REFACTOR FUNCTION NAME
 {
-	formatter->flags_length = 0;
-	formatter->flag_minus = 0;
-	formatter->flag_zero = 0;
-	formatter->star = 0;
-	formatter->point = 0;
-	formatter->width = 0;
-	formatter->precision = 0;
-	formatter->specifier = '\0';
+	formatters->flags_len = 0;
+	formatters->flag_minus = 0;
+	formatters->flag_zero = 0;
+	formatters->star = 0;
+	formatters->point = 0;
+	formatters->width = 0;
+	formatters->precision = 0;
+	formatters->specifier = '\0';
 }
 
-/* static int	flag_discovery(const char *s, t_formatter *formatter)
+static int	flag_discovery(char s, t_formatters *formatters)
 {
-	if (*s == '0' || *s == '-' || *s == '*' || *s == '.' || *s == isnumber(s) )
-
-	return;
+	if (s == '0' || s == '-' || s == '*' || s == '.' || s == ft_isnum(s))
+		return (1);
+	return (0);
 }
 
-static char	*build_flags(const char *s, t_formatter *formatter)
+static int build_flags(const char *s, t_formatters *formatters)
 {
-	return;
-} */
+	unsigned int	flags_len = 0;
+	unsigned int	s_index;
+	while (s[s_index])
+	{
+		if (flag_discovery(*s, formatters))
+			flags_len++;
+		s++;
+	}
+	return (flags_len);
+}
 
 int			ft_printf(const char *format, ...)
 {
 	va_list		ap;
-	t_formatter	formatter;
+	t_formatters	formatters;
 
 	if (!format)
 		return (-1);
 	va_start(ap, format);
-	formatter.printed_len = 0;
-	while (*format)
+	formatters.printed_len = 0;
+	formatters.fmt_position = 0;
+	while (format[formatters.fmt_position])
 	{
-		if (*format != '%')
-			ft_putchar_print_counter(*format, &(formatter.printed_len));
-		else if (*format == '%')
+		if (format[formatters.fmt_position] != '%')
+			ft_putchar_print_counter(format[formatters.fmt_position], &(formatters.printed_len));
+		else if (format[formatters.fmt_position] == '%')
 		{
-			zero_print_manager(&formatter);
-			format++;
-			formatter.specifier = *format;
-			ft_specifier_manager(ap, &formatter);
+			zero_print_manager(&formatters);
+			formatters.fmt_position++;
+			formatters.specifier = format[formatters.fmt_position];
+			ft_specifier_manager(ap, &formatters);
 		}
-		format++;
+		formatters.fmt_position++;
 	}
 	va_end(ap);
-	return (formatter.printed_len);
+	return (formatters.printed_len);
 }
 
 int	main(void) {
@@ -77,25 +86,28 @@ int	main(void) {
 	//printf("OI EU SOU O GOKU\nPrint p: p=\t%p\tp=\t%p\tnull=%p\n", &x, &y, NULL);
 	//printf("Print s: str=\t%s\tstr=\t%s\tnull=%s\n", "Groot", "I'M GROOT", NULL);
 	//ft_printf("Print s: str=\t%s\tstr=\t%s\tnull=%s\n", "Groot", "I'M GROOT", NULL);
-	int ret = ft_printf("Print p: p=\t%p\tp=\t%p\tnull=%p\n", &x, &y, NULL);
-	printf("ret = %d\n", ret);
-	printf("OI EU SOU O GOKU\n");
-	int ret_pf_real = printf("Print p: p=\t%p\tp=\t%p\tnull=%p\n", &x, &y, NULL);
-	printf("ret_pf_real = %d\n", ret_pf_real);
-	//ft_printf("%7 % % %% %z %k\n");
-	//printf("OI EU SOU O GOKU\n%7 % % %% %Z %k\n");
-	ft_printf("GROT = %5 % % %k %6t6 %tz %%\n\n");
-	printf("0 = %d\n", ft_isnum('0'));
-	printf("1 = %d\n", ft_isnum('1'));
-	printf("2 = %d\n", ft_isnum('2'));
-	printf("3 = %d\n", ft_isnum('3'));
-	printf("4 = %d\n", ft_isnum('4'));
-	printf("5 = %d\n", ft_isnum('5'));
-	printf("6 = %d\n", ft_isnum('6'));
-	printf("7 = %d\n", ft_isnum('7'));
-	printf("8 = %d\n", ft_isnum('8'));
-	printf("9 = %d\n", ft_isnum('9'));
-	printf("OUTRO = %d\n", ft_isnum('Z'));
-	printf("%d\n", 42);
+	// int ret = ft_printf("Print p: p=\t%p\tp=\t%p\tnull=%p\n", &x, &y, NULL);
+	// printf("ret = %d\n", ret);
+	// printf("OI EU SOU O GOKU\n");
+	// int ret_pf_real = printf("Print p: p=\t%p\tp=\t%p\tnull=%p\n", &x, &y, NULL);
+	// printf("ret_pf_real = %d\n", ret_pf_real);
+	// //ft_printf("%7 % % %% %z %k\n");
+	// //printf("OI EU SOU O GOKU\n%7 % % %% %Z %k\n");
+	// ft_printf("GROT = %5 % % %k %6t6 %tz %%\n\n");
+	// printf("0 = %d\n", ft_isnum('0'));
+	// printf("1 = %d\n", ft_isnum('1'));
+	// printf("2 = %d\n", ft_isnum('2'));
+	// printf("3 = %d\n", ft_isnum('3'));
+	// printf("4 = %d\n", ft_isnum('4'));
+	// printf("5 = %d\n", ft_isnum('5'));
+	// printf("6 = %d\n", ft_isnum('6'));
+	// printf("7 = %d\n", ft_isnum('7'));
+	// printf("8 = %d\n", ft_isnum('8'));
+	// printf("9 = %d\n", ft_isnum('9'));
+	// printf("OUTRO = %d\n", ft_isnum('Z'));
+	// printf("%d\n", 42);
+	int r = ft_printf("s = %s\ts = %s\ts = %s\t s = %s\ts = %s\ts = %s\n", "GROOT", "BATMAN", "I'M BATMAN", "ECOLE42", "PUDIM", "GAMBIARRA");
+	int rp = printf("s = %s\ts = %s\ts = %s\t s = %s\ts = %s\ts = %s\n", "GROOT", "BATMAN", "I'M BATMAN", "ECOLE42", "PUDIM", "GAMBIARRA");
+	printf("meu = %d\treal = %d\n", r, rp);
 	return (0);
 }
