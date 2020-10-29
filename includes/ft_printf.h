@@ -6,7 +6,7 @@
 /*   By: mathferr <mathferr@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 04:42:40 by mathferr          #+#    #+#             */
-/*   Updated: 2020/10/29 15:15:26 by mathferr         ###   ########.fr       */
+/*   Updated: 2020/10/29 17:19:27 by mathferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct		s_flag_states
 
 typedef struct		s_formatters
 {
+	char			*flags;
 	int				flag_minus; // possui menos?
 	int				flag_zero; // possui zero?
 	unsigned int	flags_len; // tamanho entre % e specifier?
@@ -43,6 +44,8 @@ typedef struct		s_formatters
 int					ft_printf(const char *format, ...);
 /* UTILS */
 int					ft_isnum(char c);
+int					ft_is_flag(char c);
+int					ft_is_specifier(char c);
 void				ft_putstr(const char *s, unsigned int *count);
 void				ft_putchar_print_counter(const char c, unsigned int *count);
 /* NUMBER CONVERSIONS */
@@ -58,5 +61,8 @@ void				ft_print_u(va_list ap, t_formatters *formater);
 void				ft_print_di(va_list ap, t_formatters *formater);
 void				ft_print_xX(va_list ap, t_formatters *formater);
 void				ft_specifier_manager(va_list ap, t_formatters *formater);
+/* STR FUNCTIONS */
+size_t				ft_strlen(const char *str);
+char				*ft_substr(char const *s, unsigned int start, size_t len);
 
 # endif

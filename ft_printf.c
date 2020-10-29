@@ -6,7 +6,7 @@
 /*   By: mathferr <mathferr@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/07 16:15:20 by mathferr          #+#    #+#             */
-/*   Updated: 2020/10/29 15:19:21 by mathferr         ###   ########.fr       */
+/*   Updated: 2020/10/29 17:43:46 by mathferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,28 +22,38 @@ static void	zero_print_manager(t_formatters *formatters) // REFACTOR FUNCTION NA
 	formatters->width = 0;
 	formatters->precision = 0;
 	formatters->specifier = '\0';
+	formatters->flags = NULL;
 }
 
-static int	flag_discovery(char s, t_formatters *formatters)
+static void build_flags(const char *fmt, t_formatters *formatters)
 {
-	if (s == '0' || s == '-' || s == '*' || s == '.' || s == ft_isnum(s))
-		return (1);
-	return (0);
-}
-
-static int build_flags(const char *s, t_formatters *formatters)
-{
-	unsigned int	flags_len = 0;
-	unsigned int	s_index;
-	while (s[s_index])
+	while (ft_is_specifier(fmt[formatters->fmt_position]) == 0)
 	{
-		if (flag_discovery(*s, formatters))
-			flags_len++;
-		s++;
+		if (ft_is_flag(fmt[formatters->fmt_position]) == 1)
+			formatters->flags_len++;
+		formatters->fmt_position++;
 	}
-	return (flags_len);
+	formatters->flags = ft_substr(fmt, (formatters->fmt_position - formatters->flags_len), formatters->flags_len);
+	printf("%d\n", formatters->flags_len);
+	printf("%s\n", formatters->flags);
+	printf("%c\n", fmt[formatters->fmt_position]);
 }
 
+/* static void build_flags(const char *fmt, t_formatters *formatters)
+{
+	while(fmt[formatters->fmt_position + formatters->flags_len])
+	{
+		if (ft_is_flag(fmt[formatters->fmt_position]) == 0)
+			formatters->flags_len++;
+		else if (ft_is_specifier(fmt[formatters->fmt_position]) == 1)
+		{
+			formatters->specifier = fmt[formatters->fmt_position + formatters->flags_len];
+			formatters->flags = ft_substr(fmt, formatters->fmt_position, formatters->flags_len);
+		}
+	}
+	printf("%s\n", formatters->flags);
+}
+ */
 int			ft_printf(const char *format, ...)
 {
 	va_list		ap;
@@ -54,16 +64,18 @@ int			ft_printf(const char *format, ...)
 	va_start(ap, format);
 	formatters.printed_len = 0;
 	formatters.fmt_position = 0;
+	formatters.flags_len = 0;
 	while (format[formatters.fmt_position])
 	{
-		if (format[formatters.fmt_position] != '%')
-			ft_putchar_print_counter(format[formatters.fmt_position], &(formatters.printed_len));
-		else if (format[formatters.fmt_position] == '%')
+		//if (format[formatters.fmt_position] != '%')
+			//ft_putchar_print_counter(format[formatters.fmt_position], &(formatters.printed_len));
+		if (format[formatters.fmt_position] == '%')
 		{
 			zero_print_manager(&formatters);
 			formatters.fmt_position++;
-			formatters.specifier = format[formatters.fmt_position];
-			ft_specifier_manager(ap, &formatters);
+			build_flags(format, &formatters);
+			//formatters.specifier = format[formatters.fmt_position];
+			//ft_specifier_manager(ap, &formatters);
 		}
 		formatters.fmt_position++;
 	}
@@ -80,8 +92,8 @@ int	main(void) {
 	//printf("OI EU SOU O GOKU\nPrint u: u=\t%u\tinvalid u=\t%u\n", 42, -666);
 	//ft_printf("Print xX: x=\t%x\tX=\t%X\t0=\t%x\n", 666, 666, 0);
 	//printf("OI EU SOU O GOKU\nPrint xX: x=\t%x\tX=\t%X\t0=\t%x\n", 666, 666, 0);
-	int x = 0;
-	int y = 0;
+	//int x = 0;
+	//int y = 0;
 	//ft_printf("Print p: p=\t%p\tp=\t%p\tnull=%p\n", &x, &y, NULL);
 	//printf("OI EU SOU O GOKU\nPrint p: p=\t%p\tp=\t%p\tnull=%p\n", &x, &y, NULL);
 	//printf("Print s: str=\t%s\tstr=\t%s\tnull=%s\n", "Groot", "I'M GROOT", NULL);
@@ -106,8 +118,8 @@ int	main(void) {
 	// printf("9 = %d\n", ft_isnum('9'));
 	// printf("OUTRO = %d\n", ft_isnum('Z'));
 	// printf("%d\n", 42);
-	int r = ft_printf("s = %s\ts = %s\ts = %s\t s = %s\ts = %s\ts = %s\n", "GROOT", "BATMAN", "I'M BATMAN", "ECOLE42", "PUDIM", "GAMBIARRA");
-	int rp = printf("s = %s\ts = %s\ts = %s\t s = %s\ts = %s\ts = %s\n", "GROOT", "BATMAN", "I'M BATMAN", "ECOLE42", "PUDIM", "GAMBIARRA");
-	printf("meu = %d\treal = %d\n", r, rp);
+	//int r = ft_printf("s = %-*s\ts = %s\ts = %s\t s = %s\ts = %s\ts = %s\n", "GROOT", "BATMAN", "I'M BATMAN", "ECOLE42", "PUDIM", "GAMBIARRA");
+	//int rp = printf("s = %s\ts = %s\ts = %s\t s = %s\ts = %s\ts = %s\n", "GROOT", "BATMAN", "I'M BATMAN", "ECOLE42", "PUDIM", "GAMBIARRA");
+	ft_printf("%-d%0-.*i\n", 0, 0);
 	return (0);
 }
