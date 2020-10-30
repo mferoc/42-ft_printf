@@ -6,7 +6,7 @@
 /*   By: mathferr <mathferr@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 04:42:40 by mathferr          #+#    #+#             */
-/*   Updated: 2020/10/29 17:19:27 by mathferr         ###   ########.fr       */
+/*   Updated: 2020/10/29 21:39:15 by mathferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,8 @@ void				ft_specifier_manager(va_list ap, t_formatters *formater);
 /* STR FUNCTIONS */
 size_t				ft_strlen(const char *str);
 char				*ft_substr(char const *s, unsigned int start, size_t len);
+/* CLEANERS */
+void				zero_formatters(t_formatters *formatters);
+void				intial_zero_state(t_formatters *formatters);
 
 # endif

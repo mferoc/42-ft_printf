@@ -6,7 +6,7 @@
 /*   By: mathferr <mathferr@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 05:07:59 by mathferr          #+#    #+#             */
-/*   Updated: 2020/10/29 16:59:42 by mathferr         ###   ########.fr       */
+/*   Updated: 2020/10/29 21:30:14 by mathferr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,10 @@ int		ft_isnum(char c)
 
 int		ft_is_flag(char c)
 {
-	if (c == '0' || c == '-' || c == '*' || c == '.' || c == ft_isnum(c))
-		return (1);
-	return (0);
+	return ((c == '0' || c == '-' || c == '*' || c == '.' || c == ft_isnum(c)));
 }
 
 int		ft_is_specifier(char c)
 {
-	if (c == 'c' || c == 's' || c == 'p' || c == 'd' || c == 'i' || c == 'u' || c == 'x' || c == 'X' || c == '%')
-		return (1);
-	else
-		return (0);
+	return ((c == 'c' || c == 's' || c == 'p' || c == 'd' || c == 'i' || c == 'u' || c == 'x' || c == 'X' || c == '%'));
 }
